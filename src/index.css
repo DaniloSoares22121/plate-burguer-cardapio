@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --coal: #15100c;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-coal font-body text-cream antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(1200px 500px at 85% -10%, rgba(244, 122, 31, 0.10), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(244, 122, 31, 0.08), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 2px, transparent 2px 7px, rgba(0,0,0,.05) 7px 9px, transparent 9px 23px);
+    background-attachment: fixed;
+  }
+  img { max-width: 100%; }
+  :focus-visible { outline: 2px solid #f47a1f; outline-offset: 2px; }
+  input, select, textarea { font-size: 16px; } /* evita zoom do iOS */
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-5xl px-4; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold transition active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-gold { @apply btn bg-gradient-to-b from-gold-2 to-gold text-coal shadow-glow hover:brightness-105; }
+  .btn-ember { @apply btn bg-gradient-to-b from-ember-3 to-ember-2 text-white hover:brightness-110; }
+  .btn-ghost { @apply btn border border-line bg-coal-3/60 text-cream hover:border-gold/60; }
+  .btn-wa { @apply btn bg-[#1faa53] text-white hover:brightness-110; }
+  .field { @apply w-full rounded-xl border border-line bg-coal-2 px-3.5 py-3 text-cream placeholder:text-muted/60 outline-none transition focus:border-gold/70 focus:ring-2 focus:ring-gold/20; }
+  .field-err { @apply border-ember focus:border-ember focus:ring-ember/25; }
+  .label { @apply mb-1.5 block text-sm font-medium text-cream/90; }
+  .err { @apply mt-1 text-[13px] text-ember-3; }
+  .panel { @apply rounded-2xl border border-line/80 bg-coal-2/90 shadow-card; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-coal-3/70 px-3 py-1 text-xs font-medium text-gold-2; }
+  .h-display { @apply font-display uppercase tracking-[0.02em]; }
+  .price { @apply font-display tracking-wide text-gold-2; }
+  .embers { position: relative; isolation: isolate; }
+  .embers::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 22%, #ff8a3d, transparent 60%),
+      radial-gradient(1px 1px at 28% 68%, #f0c877, transparent 60%),
+      radial-gradient(1.5px 1.5px at 44% 38%, #e2582b, transparent 60%),
+      radial-gradient(1px 1px at 63% 82%, #ff8a3d, transparent 60%),
+      radial-gradient(2px 2px at 78% 30%, #e2582b, transparent 60%),
+      radial-gradient(1px 1px at 90% 60%, #f0c877, transparent 60%),
+      radial-gradient(1.5px 1.5px at 55% 12%, #ff8a3d, transparent 60%),
+      radial-gradient(1px 1px at 7% 88%, #e2582b, transparent 60%);
+    animation: drift 9s linear infinite alternate;
+  }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .ornament { @apply flex items-center gap-3; }
+  .ornament::before, .ornament::after { content: ""; @apply h-px flex-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent; }
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-14px); }
+}
+@keyframes sheet-in { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+.anim-sheet { animation: sheet-in .22s ease-out; }
+.anim-fade { animation: fade-in .18s ease-out; }
+.anim-pop { animation: pop .35s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* topo: madeira escura + brasa laranja, igual à arte do cardápio impresso */
+.hero {
+  background-color: #1a120c;
+  background-image:
+    radial-gradient(700px 360px at 12% 50%, rgba(244, 122, 31, .22), transparent 70%),
+    radial-gradient(600px 300px at 100% 0%, rgba(244, 122, 31, .12), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 9px, rgba(0,0,0,.18) 9px 11px, transparent 11px 31px),
+    linear-gradient(180deg, #24180f 0%, #140e09 100%);
+}
+.ph {
+  background-color: #231911;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(244, 122, 31, .20), transparent 62%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 2px, transparent 2px 9px, rgba(0,0,0,.2) 9px 11px, transparent 11px 27px);
+}

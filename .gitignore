@@ -1,0 +1,6 @@
+node_modules
+dist
+dist_pub
+.env*
+.lovable.json
+*.tsbuildinfo
